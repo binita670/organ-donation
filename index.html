@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Register
+	</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+</head>
+<body>
+
+
+<div style="margin-left:35%;margin-right: 35%; margin-top: 10%">
+  <!-- Default form register -->
+<div class="text-center border border-light p-5" >
+
+    <p class="h4 mb-4">Sign up</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" class="form-control" placeholder="First name" name="fname" id="fname">
+             <small id="ffname" style="color: red"></small>
+        </div>
+       
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" class="form-control" placeholder="Last name" name="lname" id="lname">
+            <small id="llname" style="color: red"></small>
+        </div>
+        
+    </div>
+
+    <!-- E-mail -->
+    <input type="email"  class="form-control mb-4" placeholder="E-mail" name="email" id="email">
+    <small id="eemail" style="color: red"></small>
+    <!-- Password -->
+    <input type="password" id="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="pword"> 
+    <small id="ppassword" style="color: red"></small> 
+    <br>
+    <input type="password" id="cpassword" class="form-control" placeholder=" Confrim Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="confirmpassword">
+    <small id="ccpassword" style="color: red"></small>
+    <br>
+    <label style="font-size: 20px;" ><strong>Date of Birth</strong></label>
+    <br>
+    <input type="date" class="form-control" id="dob">
+    <small id="ddob" style="color: red"></small>
+    <br>
+    <label style="font-size: 20px;"><strong>Gender</strong></label>
+    <br>
+    <input type="radio" style="font-size: 18px;" id="gender" value="MALE" name="gender" > Male
+    <br>
+    <input type="radio"style="font-size: 18px;" id="gender" value="FEMALE" name="gender"> Female<br>
+    <small id="ggender" style="color: red"></small>
+    <br>
+    <br>
+    <input type="text"  class="form-control mb-4" placeholder="Address" name="address" id="address">
+    <small id="aadress" style="color: red"></small>
+    <input type="text"  class="form-control mb-4" placeholder="Contact No" name="contact" id="contact">
+    <small id="ccontact" style="color: red"></small>
+    
+
+   
+    
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" name="sign" id="signup">Sign up</button>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
+
+</p>
+</div>
+<!-- Default form register -->
+	
+</body>
+</html>
+
+
+
+<script type="text/javascript" src="./public/js/signup.js">
+   
+</script>
