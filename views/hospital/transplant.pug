@@ -1,0 +1,87 @@
+extends ../nav
+
+block content
+  include sidehospital
+
+  <div class="col-8">
+  <div class="card"  >
+    <div class="card-header">
+        h2=`Transplant`
+    </div>
+    <div class="card-body">
+      -if(transplantLists.length > 0)
+         <table class="table">
+          <thead class="black white-text">
+            <tr>
+              <th scope="col">SN</th>
+              <th scope="col">Donor</th>
+              <th scope="col">Reciever</th>
+              <th scope="col">Organ</th>
+              <th scope="col">Status</th>
+              <th scope="col">Medical Details</th>
+              <th scope="col">Action</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            -let i = 0;
+              each transplantlist in transplantLists
+                <tr>
+                  <th scope="row">#{++i}</th>
+                  <td> <p><b>Name:</b> #{transplantlist.donorDetails.firstName} #{transplantlist.donorDetails.lastName}</p> 
+                        <p><strong>Address:</strong> #{transplantlist.donorDetails.address}</p>
+                        <p><b>Gender:</b> #{transplantlist.donorDetails.gender}</p>
+                        <p><b>Contact No:</b> #{transplantlist.donorDetails.contactNo}</p>
+                        <p><b>Hospital:</b> #{transplantlist.sourceHospital.split("#")[1]}</p>
+                  </td>
+                  <td> <p><b>Name:</b> #{transplantlist.receiverDetails.firstName} #{transplantlist.receiverDetails.lastName}</p> 
+                        <p><strong>Address:</strong> #{transplantlist.receiverDetails.address}</p>
+                        <p><b>Gender:</b> #{transplantlist.receiverDetails.gender}</p>
+                        <p><b>Contact No:</b> #{transplantlist.receiverDetails.contactNo}</p>
+                        <p><b>Hospital:</b> #{transplantlist.destHospital.split("#")[1]}</p>
+                  </td>
+                  <td>#{transplantlist.organName}</td>
+                  <td>#{transplantlist.status}</td>
+                  <td>
+                    a(data-index=`${i}` id ="transplanttestinfo" style="font-size:15px; color:blue;") View Medical Details of Donor and Reciever
+                  </td>
+                  <td>
+                    form(action="/hospital/transplanted" method="post")
+                        input(type="hidden" name="organId" value=`${transplantlist.organId}`)
+                        <button class="btn btn-success" type="submit">Transplant</button>
+                        <button class="btn btn-danger">Reject</button>
+                  </td>
+                  
+                </tr>
+
+                tr(id=`info${i}` style="display:none; font-size:20px;")
+                  <td colspan="5">
+                    h4=`Medical Details of Donor`
+                    p=`BloodType: ${JSON.parse(transplantlist.organTestInfo).bloodType}`
+                    p=`ProteinOne: ${JSON.parse(transplantlist.organTestInfo).proteinOne}`
+                    p=`ProteinTwo: ${JSON.parse(transplantlist.organTestInfo).proteinTwo}`
+                    p=`Doctor: ${JSON.parse(transplantlist.organTestInfo).doctor}`
+                  </td>
+
+                  <td colspan="5">
+                    h4=`Medical Details of Receiver`
+                    p=`BloodType: ${JSON.parse(transplantlist.receiverDetails.organTestInfo).bloodType}`
+                    p=`ProteinOne: ${JSON.parse(transplantlist.receiverDetails.organTestInfo).proteinOne}`
+                    p=`ProteinTwo: ${JSON.parse(transplantlist.receiverDetails.organTestInfo).proteinTwo}`
+                    p=`Doctor: ${JSON.parse(transplantlist.receiverDetails.organTestInfo).doctor}`
+                  </td>
+                  
+                </tr>
+          </tbody>
+            </table>
+      -else
+        h1 No Transplant...
+       
+
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  

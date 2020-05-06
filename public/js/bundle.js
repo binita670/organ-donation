@@ -96849,6 +96849,10 @@ $(document).on("click", "#allrecieverdetails", function () {
   var index = $(this).data("index");
   if ($("#reciever-details".concat(index)).css("display") === "none") $("#reciever-details".concat(index)).slideDown();else $("#reciever-details".concat(index)).slideUp();
 });
+$(document).on("click", "#transplanttestinfo", function () {
+  var index = $(this).data("index");
+  if ($("#info".concat(index)).css("display") === "none") $("#info".concat(index)).slideDown();else $("#info".concat(index)).slideUp();
+});
 
 function validate() {
   var fname = $("#fname").val();
@@ -96989,7 +96993,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49482" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52122" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

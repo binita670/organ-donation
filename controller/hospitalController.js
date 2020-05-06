@@ -47,9 +47,65 @@ module.exports.registerRecipient = (req, res) => {
   res.status(200).render(`${dir}/recipientregister`);
 };
 
-module.exports.transplant = (req, res) => {
-  res.status(200).render("transplant");
+module.exports.getTransplant = async (req, res) => {
+  try {
+    const result= await axios({
+      url:`http://192.168.11.11:3000/api/Organ`,
+      method:'GET'
+    });
+  
+  const transplantlists = [];
+  const transplantpromise = result.data.map(async(element)=>{
+    if(element.status === "MATCHED"){
+      if(element.sourceHospital.split("#")[1] === res.locals.donor.hospitalId || element.destHospital.split("#")[1]  === res.locals.donor.hospitalId){
+        const donor = await axios({
+          url:`http://192.168.11.11:3000/api/Donor/${element.donor.split("#")[1]}`,
+          method:'GET'
+        });
+        const receiver = await axios({
+          url:`http://192.168.11.11:3000/api/Recipient/${element.recipient.split("#")[1]}`,
+          method:'GET'
+        });
+        element.donorDetails = donor.data;
+        element.receiverDetails = receiver.data;
+        transplantlists.push(element);
+      }
+    }
+  });
+  await Promise.all(transplantpromise);
+  res.locals.transplantLists = transplantlists;
+  } catch (error) {
+    console.log(error.response.data); 
+  }
+  res.status(200).render( `${dir}/transplant`);
 };
+
+
+module.exports.organTransplanted=async (req,res)=>{
+  req.body.organ = req.body.organId;
+  delete req.body.organId;
+  try {
+      const transplantResult = await axios({
+      url:`http://192.168.11.11:3000/api/Transplant`,
+      method:'POST',
+      data : req.body,
+      json: true,
+      headers:{
+        'Content-Type':'application/json'
+      }
+    });
+    if(transplantResult.status === 200){
+      console.log("success");
+      res.status(200).redirect("http://localhost:8000/hospital/transplant");
+    }
+  } catch (error) {
+    console.log(error.response.data);
+    res.status(200).redirect("http://localhost:8000/hospital/transplant");
+  }
+
+}
+
+
 
 module.exports.getRegisterRecipient =async(req,res)=>{
   const testInfo={

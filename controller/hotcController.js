@@ -167,8 +167,6 @@ module.exports.createhospital = async (req,res)=>{
 }
 
 module.exports.matched = async(req,res)=>{
-    //console.log(JSON.parse(req.body.donor));
-    //console.log(JSON.parse(req.body.reciever));
     const details = {
         hospital :JSON.parse(req.body.reciever).hospital.split("#")[1],
         recipient :JSON.parse(req.body.reciever).personId,
@@ -201,7 +199,7 @@ module.exports.matched = async(req,res)=>{
                 },
             });
             if(updateResult.status === 200)
-            res.status(200).redirect("http://localhost/hotc/matchlist");
+            res.status(200).redirect("http://localhost:8000/hotc/matchlist");
             console.log(updateResult.data);
             console.log("success");
         }

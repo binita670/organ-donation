@@ -15,7 +15,20 @@ module.exports.getSignUp = (req, res) => {
 };
 
 //Donor use
-module.exports.donateOrgan = (req, res) => {
+module.exports.donateOrgan = async(req, res) => {
+  try {
+    const result = await axios({
+      url:`http://192.168.11.11:3000/api/Organ`,
+      method:'GET'
+    });
+    result.data.forEach((element)=>{
+      if(element.donor.split("#")[1] === res.locals.donor.personId){
+        res.locals.donated = element.donor;
+      }
+    });
+  } catch (error) {
+    console.log(error.response.data);
+  }
   res.status(200).render(`${dir}/donateOrgan`);
 };
 
@@ -75,7 +88,7 @@ module.exports.submitOrgan = async (req, res) => {
   req.body.organId = crypto.randomBytes(16).toString("hex");
   console.log(req.body);
   try {
-    const result = await axios({
+      const result = await axios({
       url: "http://192.168.11.11:3000/api/Offered",
       method: "POST",
       data: req.body,
@@ -88,6 +101,7 @@ module.exports.submitOrgan = async (req, res) => {
       alert("Organ Submitted");
       return res.redirect("http://localhost:8000/donor/donateorgan");
     }
+
   } catch (error) {
     console.log(error.response.data);
     alert("Error in submitting Organ");

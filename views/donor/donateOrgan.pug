@@ -20,7 +20,10 @@ block content
               <option value="eye">Eye</option>
               <option value="bone_marrow">Bone Marrow</option>
             </select>
-            <button class="btn btn-success" type="submit" style="display:inline-block">Submit</button>
+              - if(donated)
+                <button class="btn btn-success" disabled style="margin-top:120px;">Submit</button>
+              -else
+                <button clsss="btn btn-success" type="submit" style="margin-top:120px;">Submit</button>
       </center>
       </div>
       </div>
