@@ -64,6 +64,14 @@ $(document).on("click","#allrecieverdetails",function(){
         $(`#reciever-details${index}`).slideUp();
 });
 
+$(document).on("click","#transplanttestinfo",function(){
+    const index = $(this).data("index");
+    if($(`#info${index}`).css("display") === "none")
+        $(`#info${index}`).slideDown();
+    else
+        $(`#info${index}`).slideUp();
+});
+
 function validate()
 {
     var fname=$("#fname").val();

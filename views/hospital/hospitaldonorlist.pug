@@ -9,7 +9,7 @@ block content
         h2=`Donors of ${donor.hospitalId}`
     </div>
     <div class="card-body">
-      -if(hospitaldonors.length > 0)
+      -if(hospitaldonors && hospitaldonors.length > 0)
          <table class="table">
           <thead class="black white-text">
             <tr>
@@ -32,7 +32,7 @@ block content
                   </td>
                   <td>#{donorDetail.organName}</td>
                   <td><button class="btn btn-outline-success waves-effect" disabled style="color:black;">#{donorDetail.status}</button></td>
-                    -if(donorDetail.status === "TESTED")
+                    -if(donorDetail.status === "TESTED" || donorDetail.status === "MATCHED" || donorDetail.status === "TRANSPLANT" )
                       <td>
                         a(data-index=`${i}` id ="testinfo" style="font-size:25px; color:blue;") View Details
                       </td>
