@@ -26,7 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "milsymbol": "^2.0.0",
     "parcel-bundler": "^1.12.4",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
